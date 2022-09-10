@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class User extends AbstractPersistable<Long> {
 
 	@NotNull
-	@Length(min = 6, max = 20)
+	@Length(min = 2, max = 20)
 	private String username;
 	
 	@Length(min = 6, max = 15)
@@ -43,6 +43,8 @@ public class User extends AbstractPersistable<Long> {
 	private String firstName;
 	
 	private String lastName;
+	
+	private String role;
 	
 	@ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
 	private List<Tournament> tournaments = new ArrayList<>();

@@ -12,14 +12,18 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode(callSuper=false)
 public class Tournament extends AbstractPersistable<Long> {
 
 	@NotNull
@@ -29,16 +33,17 @@ public class Tournament extends AbstractPersistable<Long> {
 	@NotNull
 	private String founder;
 	
-	@NotNull
-	@Length(min = 1, max = 3)
 	private Integer rounds;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<User> users = new ArrayList<>();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "tournament", fetch = FetchType.LAZY)
 	private List<Message> messages = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "tournament")
+	@JsonIgnore
+	@OneToMany(mappedBy = "tournament", fetch = FetchType.LAZY)
 	private List<Game> games = new ArrayList<>();
 }
