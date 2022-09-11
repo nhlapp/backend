@@ -32,7 +32,7 @@ public class User extends AbstractPersistable<Long> {
 	@Length(min = 2, max = 20)
 	private String username;
 	
-	@Length(min = 6, max = 15)
+	//@Length(min = 6, max = 15)
 	@NotNull
 	private String password;
 	

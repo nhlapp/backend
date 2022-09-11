@@ -3,6 +3,7 @@ package com.nhl.backend.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -28,6 +29,7 @@ public class Tournament extends AbstractPersistable<Long> {
 
 	@NotNull
 	@Length(min = 3, max = 20)
+	@Column(unique = true)
 	private String name;
 	
 	@NotNull
